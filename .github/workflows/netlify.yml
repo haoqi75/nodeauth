@@ -12,6 +12,7 @@ jobs:
     name: "Deploy to Netlify"
     permissions:
       contents: read
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,7 +38,7 @@ jobs:
 
       - name: Build and Deploy to Netlify
         run: |
-          npx netlify-cli deploy --build --prod
+          npx netlify-cli deploy --build --prod > /dev/null 2>&1
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

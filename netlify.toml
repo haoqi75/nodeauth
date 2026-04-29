@@ -19,6 +19,11 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["better-sqlite3", "pg", "mysql2", "nodemailer", "cloudflare:sockets"]
-  included_files = ["!backend/dist/worker.js", "!backend/dist/server.js"]
+  included_files = [
+    "!backend/src/**",
+    "!backend/scripts/**",
+    "!backend/dist/worker/**",
+    "!backend/dist/docker/**"
+  ]
 
 [functions."api"]
