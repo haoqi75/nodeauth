@@ -62357,11 +62357,11 @@ var AuthService = class {
     if (allowAllStr === "true" || allowAllStr === "1" || allowAllStr === "2") {
       return;
     }
-    const allowedUsersStr = this.env.OAUTH_ALLOWED_USERS || "";
+    const allowedUsersStr = String(this.env.OAUTH_ALLOWED_USERS || "");
     const allowedIdentities = allowedUsersStr.split(",").map((e2) => e2.trim().toLowerCase()).filter(Boolean);
     if (allowedIdentities.length > 0) {
       const userEmail = (userInfo.email || "").toLowerCase();
-      const userName = (userInfo.username || "").toLowerCase();
+      const userId = (userInfo.id || "").toLowerCase();
       let isAllowed = false;
       if (whitelistFields.includes("email") && userEmail) {
         if (allowedIdentities.some((id) => {
@@ -62376,7 +62376,7 @@ var AuthService = class {
           isAllowed = true;
         }
       }
-      if (!isAllowed && whitelistFields.includes("username") && userName && allowedIdentities.includes(userName)) {
+      if (!isAllowed && whitelistFields.includes("id") && userId && allowedIdentities.includes(userId)) {
         isAllowed = true;
       }
       if (!isAllowed) {
@@ -73505,7 +73505,7 @@ var Web3WalletAuthService = class {
     if (allowAllStr === "true" || allowAllStr === "1" || allowAllStr === "2") {
       return;
     }
-    const allowedUsersStr = this.env.OAUTH_ALLOWED_USERS || "";
+    const allowedUsersStr = String(this.env.OAUTH_ALLOWED_USERS || "");
     const allowedIdentities = allowedUsersStr.split(",").map((e2) => e2.trim().toLowerCase()).filter(Boolean);
     if (allowedIdentities.length > 0) {
       let isAllowed = false;
